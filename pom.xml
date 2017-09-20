@@ -8,7 +8,7 @@
   <packaging>pom</packaging>
 
   <name>parent</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/jartisan2001/parent.git</url>
   <description>wjlei2001@sina.com</description>
 
   <properties>
