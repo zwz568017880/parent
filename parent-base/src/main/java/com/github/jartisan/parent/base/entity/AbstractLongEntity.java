@@ -12,8 +12,8 @@ import com.google.common.collect.Maps;
 
 /***
  * long 主键 bigInt
- * @author wjl
- *
+ * @author  wjl
+ * @date 2017/10/16
  */
 public class AbstractLongEntity{
 	

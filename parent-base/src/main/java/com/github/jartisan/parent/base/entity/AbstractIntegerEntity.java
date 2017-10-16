@@ -13,7 +13,7 @@ import com.google.common.collect.Maps;
 /***
  * int 主键
  * @author  wjl
- *
+ * @date 2017/10/16
  */
 public class AbstractIntegerEntity{
 	

@@ -16,7 +16,11 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/***
+ * ZIP 压缩解压工具
+ * @author ejb3
+ * @date 2017/10/16
+ */
 public class ZipFileUtil {
 	private static Logger log = LoggerFactory.getLogger(ZipFileUtil.class);
 	/**
@@ -58,8 +62,9 @@ public class ZipFileUtil {
 							} catch (Exception e) {
 								throw new RuntimeException(e);
 							} finally {
-								if (is != null)
-									is.close();
+								if (is != null){
+									is.close();									
+								}
 							}
 						}
 						log.info("压缩完成{}",file.getName());
@@ -153,8 +158,10 @@ public class ZipFileUtil {
 	 */
 	public static boolean isEndsWithZip(String fileName) {
 		boolean flag = false;
+		final String  upperCase = ".ZIP";
+		final String  lowerCase = ".zip";
 		if (fileName != null && !"".equals(fileName.trim())) {
-			if (fileName.endsWith(".ZIP") || fileName.endsWith(".zip")) {
+			if (fileName.endsWith(upperCase) || fileName.endsWith(lowerCase)) {
 				flag = true;
 			}
 		}

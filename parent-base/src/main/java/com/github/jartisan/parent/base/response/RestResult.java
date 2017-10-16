@@ -7,13 +7,13 @@ import com.github.jartisan.parent.base.enums.GlobalCode;
 /***
  * @description 反回结果类
  * @author wjl
- * @ClassName: APIResult
+ * @ClassName: RestResult
  * @Version 版本
  * @ModifiedBy jartisan
  * @Copyright com.github.jartisan
  * @date 2017年07月25日 下午7:28:23
  */
-public class APIResult extends HashMap<String, Object>  {
+public class RestResult extends HashMap<String, Object>  {
 	
 	private static final long serialVersionUID = 1L;
 	/**
@@ -21,28 +21,28 @@ public class APIResult extends HashMap<String, Object>  {
 	 */
 	public static final int SUCCESS = GlobalCode.SUCCESS.getCode();
 
-	public APIResult() {
+	public RestResult() {
 	}
 
-	public APIResult(Object result) {
-		setCode(APIResult.SUCCESS);
+	public RestResult(Object result) {
+		setCode(RestResult.SUCCESS);
 		setMessage(GlobalCode.SUCCESS.getMsg());
 		setData(result);
 	}
-	public APIResult success() {  
-		setCode(APIResult.SUCCESS);
+	public RestResult success() {  
+		setCode(RestResult.SUCCESS);
 		setMessage(GlobalCode.SUCCESS.getMsg());
         return this;  
     }  
   
-    public APIResult success(Object data) {  
-    	setCode(APIResult.SUCCESS);
+    public RestResult success(Object data) {  
+    	setCode(RestResult.SUCCESS);
     	setMessage(GlobalCode.SUCCESS.getMsg());
 		setData(data);
         return this;  
     }  
   
-    public APIResult failure(int code,String message) {  
+    public RestResult failure(int code,String message) {  
 		setMessage(message);
 		setCode(code);
         return this;  

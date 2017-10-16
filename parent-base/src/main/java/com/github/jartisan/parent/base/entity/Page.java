@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 /***
  * 分页
  * @author wjl
- *
+ * @date 2017/10/16
  */
 public class Page implements Serializable {
 	
