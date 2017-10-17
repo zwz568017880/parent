@@ -57,7 +57,8 @@ public class AbstractStringEntity{
      */
     public static<T extends AbstractStringEntity> List<String> entityIds(List<T> list){
         List<String> ids = Lists.transform(list, new Function<T, String>(){
-                public String apply(T entity){
+        		@Override
+        		public String apply(T entity){
                 return entity.getId();
                 }
                 }); 

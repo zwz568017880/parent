@@ -22,7 +22,7 @@ public class AbstractPersistable <PK extends Serializable> implements Persistabl
 	 *@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") 
 	 */
 	private Date createDate = new Date();
-
+	@Override
 	public PK getId() {
 		return id;
 	}

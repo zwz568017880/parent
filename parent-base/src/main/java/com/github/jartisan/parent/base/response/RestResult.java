@@ -1,6 +1,9 @@
 package com.github.jartisan.parent.base.response;
 
-import java.util.HashMap;
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.github.jartisan.parent.base.enums.GlobalCode;
 
@@ -13,64 +16,89 @@ import com.github.jartisan.parent.base.enums.GlobalCode;
  * @Copyright com.github.jartisan
  * @date 2017年07月25日 下午7:28:23
  */
-public class RestResult extends HashMap<String, Object>  {
+public class RestResult<T> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	/**
-	 * 执行成功
+	 * 全局响应码
 	 */
-	public static final int SUCCESS = GlobalCode.SUCCESS.getCode();
+	private final int code;
+	/**
+	 * 全局响应码说明
+	 */
+	private final String msg;
+	/**
+	 * 响应数据
+	 */
+	private final T data;
 
-	public RestResult() {
+
+	public RestResult(T result) {
+		this(GlobalCode.SUCCESS.getCode(),GlobalCode.SUCCESS.getMsg(),null);
 	}
-
-	public RestResult(Object result) {
-		setCode(RestResult.SUCCESS);
-		setMessage(GlobalCode.SUCCESS.getMsg());
-		setData(result);
-	}
-	public RestResult success() {  
-		setCode(RestResult.SUCCESS);
-		setMessage(GlobalCode.SUCCESS.getMsg());
-        return this;  
-    }  
-  
-    public RestResult success(Object data) {  
-    	setCode(RestResult.SUCCESS);
-    	setMessage(GlobalCode.SUCCESS.getMsg());
-		setData(data);
-        return this;  
-    }  
-  
-    public RestResult failure(int code,String message) {  
-		setMessage(message);
-		setCode(code);
-        return this;  
-    }  
-
 	
+	
+	public RestResult(int code, String msg) {
+		
+		this(code,msg,null);
+	}
+
+
+	public RestResult(int code, String msg, T data) {
+		super();
+		this.code = code;
+		this.msg = msg;
+		this.data = data;
+	}
+
 	public int getCode() {
-		return Integer.parseInt(String.valueOf(this.get("code")));
+		return code;
 	}
 
-	public void setCode(int code) {
-		this.put("code", String.valueOf(code));
+	public String getMsg() {
+		return msg;
+	}
+
+	public T getData() {
+		return data;
 	}
 	
-	public String getMessage() {
-		return (String) this.get("msg");
-	}
-
-	public void setMessage(String message) {
-		this.put("msg", message);
-	}
-
-	public Object getData() {
-		return this.get("data");
-	}
-
-	public void setData(Object data) {
-		this.put("data", data);
+	public static <T> RestResult<T> ok() {
+		RestResultBuilder builder = new RestResultBuilder();
+		return builder.ok();
 	}
 	
+	public static <T> RestResult<T> ok(T body) {
+		RestResultBuilder builder = new RestResultBuilder();
+		return builder.ok(body);
+	}
+	public static <T> RestResult<T> failure(int code ,String msg) {
+		RestResultBuilder builder = new RestResultBuilder();
+		return builder.failure(code,msg,null);
+	}
+	
+	public static <T> RestResult<T> failure(int code ,String msg,T body) {
+		RestResultBuilder builder = new RestResultBuilder();
+		return builder.failure(code,msg,body);
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.JSON_STYLE);
+	}
+	
+	public static class RestResultBuilder{
+		
+		public <T> RestResult<T> ok() {
+			return ok(null);
+		}
+
+		public <T> RestResult<T> ok(T body) {
+			return new RestResult<T>(GlobalCode.SUCCESS.getCode(),GlobalCode.SUCCESS.getMsg(),body);
+		}
+		
+		public <T> RestResult<T> failure(int code ,String msg,T body) {
+			return new RestResult<T>(GlobalCode.SUCCESS.getCode(),GlobalCode.SUCCESS.getMsg(),body);
+		}
+	}
 }

@@ -60,6 +60,7 @@ public class AbstractLongEntity{
      */
     public static<T extends AbstractLongEntity> List<Long> entityIds(List<T> list){
         List<Long> ids = Lists.transform(list, new Function<T, Long>(){
+        		@Override
                 public Long apply(T entity){
                 return entity.getId();
                 }

@@ -58,6 +58,7 @@ public class AbstractIntegerEntity{
      */
     public static<T extends AbstractIntegerEntity> List<Integer> entityIds(List<T> list){
         List<Integer> ids = Lists.transform(list, new Function<T, Integer>(){
+        	   @Override
                 public Integer apply(T entity){
                 return entity.getId();
                 }
