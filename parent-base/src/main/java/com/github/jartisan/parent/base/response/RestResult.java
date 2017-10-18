@@ -5,6 +5,8 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.github.jartisan.parent.base.enums.GlobalCode;
 
 /***
@@ -22,15 +24,21 @@ public class RestResult<T> implements Serializable{
 	/**
 	 * 全局响应码
 	 */
-	private final int code;
+	private int code;
 	/**
 	 * 全局响应码说明
 	 */
-	private final String msg;
+	private String msg;
 	/**
 	 * 响应数据
 	 */
-	private final T data;
+	@JsonInclude(Include.NON_NULL) 
+	private T data;
+
+
+	public RestResult() {
+		super();
+	}
 
 
 	public RestResult(T result) {

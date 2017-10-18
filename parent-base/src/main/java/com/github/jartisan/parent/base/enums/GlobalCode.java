@@ -13,8 +13,8 @@ package com.github.jartisan.parent.base.enums;
  */
 public enum GlobalCode {
 	    //通用响应码
-	    SUCCESS(10000, "ok"),
-	    ERROR(99999, "system error"),
+	    SUCCESS(200, "ok"),
+	    ERROR(500, "system error"),
 	    ERROR_190001(190001, "authorization token is error !"),
 	    ERROR_190002(190002, "参数校验失败 !"),
 	    
